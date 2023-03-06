@@ -16,46 +16,52 @@ public class BoardServiceimpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 	//private LogAdvice log;
-	private Log4jAdvice log;
-	
+	//private Log4jAdvice log;
+	/*
 	public BoardServiceimpl() {
 		//log = new LogAdvice();
 		log = new Log4jAdvice();
 			
-	}
+	}*/
 	
 	@Override
 	public void insertBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
+		/*
+		//exception 확인용
+		if(vo.getSeq()==0) {
+			throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
+		}
+		*/
 		boardDAO.insertBoard(vo);
 	}
 
 	@Override
 	public void updateBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		boardDAO.updateBoard(vo);
 	}
 
 	@Override
 	public void deleteBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		boardDAO.deleteBoard(vo);
 	}
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		return boardDAO.getBoard(vo);
 	}
 
 	@Override
 	public List<BoardVO> getBoardList() {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		return boardDAO.getBoardList();
 	}
 
