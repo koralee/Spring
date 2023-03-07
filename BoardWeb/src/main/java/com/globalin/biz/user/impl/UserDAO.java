@@ -16,7 +16,7 @@ public class UserDAO {
 	private ResultSet rs = null;
 	
 	// SQL 명령어
-	private final String USER_GET="select * from users where id=? and password=?";
+	private final String USER_GET="select * from users where id=? and passwd=?";
 	
 	// CRUD 기능의 메소드 구현
 	public UserVO getUser(UserVO vo){
@@ -27,13 +27,13 @@ public class UserDAO {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(USER_GET);
 			pstmt.setString(1, vo.getId());
-			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(2, vo.getPasswd());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				user = new UserVO();
 				user.setId(rs.getString("id"));
-				user.setPassword(rs.getString("password"));
+				user.setPasswd(rs.getString("passwd"));
 				user.setName(rs.getString("name"));
 				user.setRole(rs.getString("role"));
 				
