@@ -29,6 +29,8 @@
 			</exclusions>
 		</dependency>
 
+
+
 		<!-- https://mvnrepository.com/artifact/jdbc/ojdbc -->
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -60,11 +62,11 @@
 
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>
-    		<groupId>org.aspectj</groupId>
-    		<artifactId>aspectjweaver</artifactId>
-    		<version>1.8.8</version>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.8</version>
 		</dependency>
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -127,6 +129,14 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.2.4.RELEASE</version>
+		</dependency>
+
 
 		<!-- Servlet -->
 		<dependency>
