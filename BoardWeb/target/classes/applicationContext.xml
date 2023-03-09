@@ -17,30 +17,53 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 	<!--<bean class="polymorphism.AppleSpeaker"></bean> -->
-	<!-- <bean id="log" class="com.globalin.biz.common.LogAdvice"></bean> <aop:config> 
-		<aop:pointcut id="allPointcut" expression="execution(* com.globalin.biz..*Impl.*(..))" 
-		/> <aop:aspect ref="log"> <aop:before method="printLog" pointcut-ref="allPointcut"/> 
-		</aop:aspect> </aop:config> -->
+	<!-- <bean id="log" class="com.globalin.biz.common.LogAdvice"></bean>
+	<aop:config>
+		<aop:pointcut id="allPointcut"
+			expression="execution(* com.globalin.biz..*Impl.*(..))" />
+		<aop:aspect ref="log">
+			<aop:before method="printLog" pointcut-ref="allPointcut" />
+		</aop:aspect>
+	</aop:config> -->
 
-	<!-- <bean id="log" class="com.globalin.biz.common.Log4jAdvice"></bean> 
-		<bean id="before" class="com.globalin.biz.common.BeforeAdvice"></bean> <bean 
-		id="afterReturning" class="com.globalin.biz.common.AfterReturningAdvice"></bean> 
-		<bean id="afterThrowing" class="com.globalin.biz.common.AfterThrowingAdvice"></bean> 
-		<bean id="after" class="com.globalin.biz.common.AfterAdvice"></bean> <bean 
-		id="around" class="com.globalin.biz.common.AroundAdvice"></bean> -->
+<!-- 	<bean id="log" class="com.globalin.biz.common.Log4jAdvice"></bean>
+	<bean id="before" class="com.globalin.biz.common.BeforeAdvice"></bean>
+	<bean id="afterReturning"
+		class="com.globalin.biz.common.AfterReturningAdvice"></bean>
+	<bean id="afterThrowing"
+		class="com.globalin.biz.common.AfterThrowingAdvice"></bean>
+	<bean id="after" class="com.globalin.biz.common.AfterAdvice"></bean>
+	<bean id="around" class="com.globalin.biz.common.AroundAdvice"></bean> -->
 
-	<!-- <aop:config> <aop:pointcut id="allPointcut" expression="execution(* 
-		com.globalin.biz..*Impl.*(..))" /> <aop:pointcut id="getPointcut" expression="execution(* 
-		com.globalin.biz..*Impl.get*(..))" /> <aop:aspect ref="log"> <aop:before 
-		method="printLogging" pointcut-ref="allPointcut" /> </aop:aspect> <aop:aspect 
-		ref="before"> <aop:before method="beforeLog" pointcut-ref="allPointcut" /> 
-		</aop:aspect> <aop:aspect ref="afterReturning"> <aop:after-returning method="afterLog" 
-		pointcut-ref="getPointcut" returning="returnObj" /> </aop:aspect> <aop:aspect 
-		ref="afterThrowing"> <aop:after-throwing method="exceptionLog" pointcut-ref="allPointcut" 
-		throwing="exceptionObj" /> </aop:aspect> <aop:aspect ref="after"> <aop:after 
-		method="finallyLog" pointcut-ref="allPointcut" /> </aop:aspect> <aop:aspect 
-		ref="around"> <aop:around method="aroundLog" pointcut-ref="allPointcut" /> 
-		</aop:aspect> </aop:config> -->
+<!-- 	<aop:config>
+		<aop:pointcut id="allPointcut"
+			expression="execution(* 
+		com.globalin.biz..*Impl.*(..))" />
+		<aop:pointcut id="getPointcut"
+			expression="execution(* 
+		com.globalin.biz..*Impl.get*(..))" />
+		<aop:aspect ref="log">
+			<aop:before method="printLogging"
+				pointcut-ref="allPointcut" />
+		</aop:aspect>
+		<aop:aspect ref="before">
+			<aop:before method="beforeLog" pointcut-ref="allPointcut" />
+		</aop:aspect>
+		<aop:aspect ref="afterReturning">
+			<aop:after-returning method="afterLog"
+				pointcut-ref="getPointcut" returning="returnObj" />
+		</aop:aspect>
+		<aop:aspect ref="afterThrowing">
+			<aop:after-throwing method="exceptionLog"
+				pointcut-ref="allPointcut" throwing="exceptionObj" />
+		</aop:aspect>
+		<aop:aspect ref="after">
+			<aop:after method="finallyLog" pointcut-ref="allPointcut" />
+		</aop:aspect>
+		<aop:aspect ref="around">
+			<aop:around method="aroundLog" pointcut-ref="allPointcut" />
+		</aop:aspect>
+	</aop:config> -->
 
 	<!-- expression="execution(* com.globalin.biz..*Impl.*(..))" * : 리턴타입 com.globalin.biz.. 
 		: 패키지경로 * Impl : 클래스명 (대소문자 구분함) *(..) : 메소드명 및 매개변수 -->
@@ -59,10 +82,30 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<!-- Spring JDBC　설정  -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<!-- Spring JDBC　설정 -->
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+
+	<!-- Transaction 설정 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.globalin.biz..*Impl.*(..))" id="txPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+	</aop:config>
+	
 
 	<!-- <bean id="userService" class="com.globalin.biz.user.impl.UserServiceImpl"> 
 		<property name="userDAO" ref="userDAO"> </property> </bean> <bean id="userDAO" 
