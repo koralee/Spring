@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>새글 등록</title>
+<title>글 등록</title>
 </head>
 <body>
-	<h1>새글 등록</h1>
-	<a href="logout_proc.jsp">Log-out</a>
+	<h1>글 등록</h1>
+	<a href="logout.do">Log-out</a>
 	<hr>
-	<form action="insertBoard_proc.jsp" method="post">
+	<form action="insertBoard.do" method="post">
 		<table border="1" cellpadding="0" cellspacing="0">
 			<tr>
 				<td bgcolor="orange" width="70">제목</td>

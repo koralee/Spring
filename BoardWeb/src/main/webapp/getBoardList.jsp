@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="com.globalin.biz.board.impl.BoardDAO"%>
 <%@ page import="com.globalin.biz.board.BoardVO"%>
 <%@ page import="java.util.List"%>
 
 <%
-	// 데이터베이스 연동
+/*
+//데이터베이스 연동
 BoardVO vo = new BoardVO();
 BoardDAO boardDAO = new BoardDAO();
 List<BoardVO> boardList = boardDAO.getBoardList();
+ */
+ 
+// 세션에 저장된 글 목록을 가져옴.
+List<BoardVO> boardList = (List)session.getAttribute("boardList");
+
 
 //  응답화면 구성
 %>
@@ -24,7 +29,7 @@ List<BoardVO> boardList = boardDAO.getBoardList();
 	<div align="center">
 		<h1>글 목록</h1>
 		<h3>
-			테스트님 환영합니다.....<a href="logout_proc.jsp">log-out</a>
+			테스트님 환영합니다.....<a href="logout.do">log-out</a>
 		</h3>
 		<form action="getBoardList.jsp" method="post">
 		<table border="1" cellpadding="0" cellspacing="0" width="700">
@@ -56,7 +61,7 @@ List<BoardVO> boardList = boardDAO.getBoardList();
 		<tr>
 			<td><%=board.getSeq() %></td>
 			<td align="left">
-			<a href="getBoard.jsp?seq=<%=board.getSeq()%>">
+			<a href="getBoard.do?seq=<%=board.getSeq()%>">
 			<%=board.getTitle() %></a>
 			</td>
 			<td><%=board.getWriter() %></td>
