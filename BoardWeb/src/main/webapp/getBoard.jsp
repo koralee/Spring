@@ -1,19 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.globalin.biz.board.BoardVO"%>
-<%
-	//
-/* String seq = request.getParameter("seq");
-
-BoardVO vo = new BoardVO();
-vo.setSeq(Integer.parseInt(seq));
-BoardDAO boardDAO = new BoardDAO(); */
-
-
-BoardVO board = (BoardVO)session.getAttribute("board");
-
-//응답화면
-%>
 
 <!DOCTYPE html>
 <html>
@@ -28,44 +14,45 @@ BoardVO board = (BoardVO)session.getAttribute("board");
 		<a href="logout.do">Log-out</a>
 		<hr>
 		<form action="updateBoard.do" method="post">
-			<input type="hidden" name="seq" value="<%=board.getSeq()%>">
+			<input type="hidden" name="seq" value="${board.seq}">
 			<table border="1" cellpadding ="0" cellspacing="0">
 			<tr>
 				<td bgcolor="orange" width="70">제목</td>
 				<td align="left">
-				<input type="text" name="title" value="<%=board.getTitle()%>">
+				<input type="text" name="title" value="${board.title}">
 				</td>
 			</tr>
 			
 			<tr>
 				<td bgcolor="orange" width="70">작성자</td>
 				<td align="left">
-				<%=board.getWriter()%>
+				${board.wrtier}
 				</td>
 			</tr>
 			
 			<tr>
 				<td bgcolor="orange" width="70">내용</td>
 				<td align="left">
-				<textarea name="content" cols="40" rows="10"><%=board.getContent()%></textarea>
+				<textarea name="content" cols="40" rows="10">${board.content}</textarea>
 				</td>
 			</tr>
 			
 			<tr>
 				<td bgcolor="orange" width="70">작성일</td>
 				<td align="left">
-				<%=board.getRegDate()%>
+				${board.regdate}
 				</td>
 			</tr>
 			
 			<tr>
 				<td bgcolor="orange" width="70">조회수</td>
 				<td align="left">
-				<%=board.getCnt()%>
+				${board.cnt}
 				</td>
 			</tr>
 			
 			<tr>
+			
 				<td colspan="2" align="center">
 				<input type="submit" value="글 수정">
 				</td>
@@ -75,7 +62,7 @@ BoardVO board = (BoardVO)session.getAttribute("board");
 		</form>
 		<hr>
 		<a href="insertBoard.jsp">글 등록</a>&nbsp;&nbsp;&nbsp; <a
-			href="deleteBoard.do?seq=<%=board.getSeq()%>">글 삭제</a>&nbsp;&nbsp;&nbsp;
+			href="deleteBoard.do?seq=${board.seq}">글 삭제</a>&nbsp;&nbsp;&nbsp;
 		<a href="getBoardList.do">글 목록</a>
 	</div>
 </body>
