@@ -9,31 +9,34 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class CollectionBeanClient {
-
 	public static void main(String[] args) {
+		AbstractApplicationContext factory=new GenericXmlApplicationContext("applicationContext.xml");
 		
-		AbstractApplicationContext factory = 
-				new GenericXmlApplicationContext("applicationContext.xml");
+		CollectionBean bean=(CollectionBean)factory.getBean("collectionBean");
 		
-		CollectionBean bean = (CollectionBean) factory.getBean("collectionBean");
+//		List<String> addrList= bean.getAddressList();
+//		Set<String> addrList= bean.getAddressList();
 		
+//		for (String string : addrList) {
+//			System.out.println(string);
+//		}
 		
-	  //List<String> addressList = bean.getAddressList();
-	  //Set<String> addressList = bean.getAddressList();
-	  //Map<String, String> addressList = bean.getAddressList();
-		Properties addressList = bean.getAddressList();
+//		Map<String, String> addrList=bean.getAddressList();
+//	
+//		for (String address : addrList.keySet()) {
+//			System.out.println(String.format("키 : %s, 값 : %s", address, addrList.get(address)));
+//		}
 		
-		for(String address : addressList.stringPropertyNames()) {
-			System.out.println(String.format("키 : %s, 값 : %s", address, addressList.get(address)));
-		}
+		Properties addrList=bean.getAddressList();
 		
-		/* 
-		 * 맵 사용시
-		for(String address : addressList.keySet()) {
-			System.out.println(String.format("키 : %s, 값 : %s", address, addressList.get(address)));
-		}
-		*/
-		factory.close();
+//		for (String address : addrList.stringPropertyNames()) {
+//		System.out.println(String.format("키 : %s, 값 : %s", address, addrList.get(address)));
+//		}
+		
+		for (Object address : addrList.keySet()) {
+			System.out.println((String)address + " : "+addrList.get((String)address));
+			}
+					
+		
 	}
-
 }

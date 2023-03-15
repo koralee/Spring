@@ -3,21 +3,20 @@ package com.globalin.biz.user;
 public class UserVO {
 	
 	private String id;
-	private String passwd;
+	private String password;
 	private String name;
 	private String role;
-	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPasswd() {
-		return passwd;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -34,6 +33,6 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO [id="+id+", password="+passwd+", name="+name+", role="+role+"]";
+		return "UserdVO [id="+id+", password="+password+", name="+name+", role="+role+"]";
 	}
 }

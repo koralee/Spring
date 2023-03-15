@@ -1,9 +1,18 @@
 package com.globalin.biz.user;
 
-public interface UserService {
+import java.util.List;
 
+import com.globalin.biz.board.BoardVO;
+
+public interface UserService {
 	// CRUD 기능의 메소드 구현
-	// 회원등록
-	public UserVO getUser(UserVO vo);
-	
+	void insertUser(UserVO vo);
+
+	void updateUser(UserVO vo);
+
+	void deleteUser(UserVO vo);
+
+	UserVO getUser(UserVO vo);
+
+	List<UserVO> getUserList();
 }

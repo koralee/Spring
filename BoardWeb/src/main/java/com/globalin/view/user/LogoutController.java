@@ -1,22 +1,21 @@
 package com.globalin.view.user;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.globalin.view.controller.Controller;
 
-public class LogoutController implements Controller {
+@Controller
+public class LogoutController {
 
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-
-		System.out.println("로그아웃 처리..");
-		
-		HttpSession session = request.getSession();
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		System.out.println("로그아웃 처리...");
 		session.invalidate();
-		
-		return "login";
+		return "login.do";
 	}
 
 }

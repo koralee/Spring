@@ -2,6 +2,7 @@ package com.globalin.biz.board;
 
 import java.sql.Date;
 
+//VO(Value Object)
 public class BoardVO {
 	
 	private int seq;
@@ -10,10 +11,37 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private String searchCondition;
+	private String searchKeyword;
 	
+	
+	
+	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+
 	public int getSeq() {
 		return seq;
 	}
+	
+	
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
@@ -50,8 +78,6 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		
 		return "BoardVO [seq="+seq+", title="+title+", writer="+writer+", content="+content+", regDate="+regDate+", cnt="+cnt+"]";
 	}
-	
 }
