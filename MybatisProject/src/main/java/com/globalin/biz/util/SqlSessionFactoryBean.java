@@ -8,25 +8,23 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlSessionFactoryBean {
-
+	
 	private static SqlSessionFactory sessionFactory = null;
 	
 	static {
-		try{
-			if(sessionFactory == null) {
+		try {
+			if(sessionFactory==null) {
 				Reader reader = Resources.getResourceAsReader("sql-map-config.xml");
 				sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			}
 			
-		}catch(Exception e) {
+			
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	public static SqlSession getSqlSessionInstance() {
+	public static SqlSession getSessionInstance() {
 		return sessionFactory.openSession();
 	}
-	
-	
-	
 }

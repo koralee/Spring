@@ -20,8 +20,14 @@
 			<tr>
 				<td align="right">
 					<select name="searchCondition">
+					<!-- 
 						<c:forEach var="option" items="${conditionMap }">
 							<option value="${option.value }">${option.key }</option>
+						</c:forEach>
+					-->
+						<c:forEach begin="0" items="1">
+							<option><spring:message code="message.board.list.search.condition.title" /></option>
+							<option><spring:message code="message.board.list.search.condition.content" /></option>
 						</c:forEach>
 					</select>
 					<input name="searchKeyword" type="text">

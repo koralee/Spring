@@ -8,6 +8,7 @@ import com.globalin.biz.board.impl.BoardDAO;
 public class BoardServiceClient {
 
 	public static void main(String[] args) throws SQLException {
+		
 		BoardDAO boardDAO = new BoardDAO();
 		BoardVO vo = new BoardVO();
 		
@@ -21,8 +22,10 @@ public class BoardServiceClient {
 		
 		List<BoardVO> boardList = boardDAO.getBoardList(vo);
 		for(BoardVO board : boardList) {
-			System.out.println("====> "+board.toString());
+			System.out.println("====> " + board.toString());
 		}
+		
+
 	}
 
 }

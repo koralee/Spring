@@ -79,7 +79,6 @@
 	-->
 
 	<!-- DataSource 설정 -->
-	
 	<context:property-placeholder location="classpath:config/database.properties"  />
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -98,6 +97,12 @@
 	<!-- Transaction 설정 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Mybatis Bean 설정 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:sql-map-config.xml" />
 	</bean>
 	
 	<tx:advice id="txAdvice" transaction-manager="txManager">

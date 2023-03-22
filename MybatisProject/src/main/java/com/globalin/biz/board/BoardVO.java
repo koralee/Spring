@@ -12,6 +12,7 @@ public class BoardVO {
 	private int cnt;
 	private String searchCondition;
 	private String searchKeyword;
+	
 	public int getSeq() {
 		return seq;
 	}
@@ -63,7 +64,7 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		return "BoardVO [seq="+seq+", title="+title+", writer="+writer+
-				", content="+content+", regDate="+regDate+", cnt="+cnt+"]";
+		return "BoardVO [seq="+seq+", title="+title+", writer="+writer+", content="+content+", regDate="+regDate+", cnt="+cnt+"]";
 	}
+	
 }
